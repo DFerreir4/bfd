@@ -1,0 +1,24 @@
+Agora é sua vez.
+
+1) Crie um programa que receba os valores de três notas de
+ um aluno e imprima a média.
+
+2) Converta a temperatura de Celsius para Fahrenheit.
+
+3) Peça dois números ao usuário e mostre qual é o maior ou se são iguais.
+
+4) Peça dois números ao usuário, calcule a soma e verifique se é maior que 20.
+
+5) Calcule a média de 3 notas e verifique se é igual a 7.0.
+
+6)Peça um número inteiro e verifique se o resto da divisão por 3 é igual a 1.
+
+7) Peça a base a altura de um triângulo e calcule sua área.
+
+8) Peça um valor de hora e converta um valor em horas para minutos.
+
+9) Um funcionário foi sorteado para receber um aumento de 15% em seu salário. Calcule o valor do novo salário deste funcionário.
+
+10) Peça dois números inteiros e mostre o resultado da divisão inteira e o resto.
+
+11) Peça um número e calcule o seu quadrado e sua raiz quadrada.
