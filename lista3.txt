@@ -1,0 +1,12 @@
+1. Peça a idade de uma pessoa e verifique se ela tem entre 18 e 30 anos (inclusive).
+2. Solicite dois números e verifique se pelo menos um deles é múltiplo de 5.
+3. Pergunte a nota de um aluno e se ele fez trabalho extra (True/False). Aprove se a nota for ≥ 7 ou se fez trabalho extra.
+4. Peça um número inteiro e verifique se ele é par e positivo.
+5. Solicite um valor e verifique se ele está fora da faixa entre 50 e 100.
+6. Peça a idade e se tem carteira de motorista (True/False). Permita dirigir se idade ≥ 18 e tiver carteira.
+7. Solicite três números e verifique se pelo menos dois deles são iguais.
+8. Peça o salário e verifique se ele está entre 2000 e 5000 ou é exatamente 10000.
+9. Pergunte a quantidade de produtos no estoque e se é produto essencial (True/False). Reponha se for essencial ou a quantidade for menor que 10.
+10. Solicite a altura e o peso, e verifique se o IMC está fora da faixa saudável (18.5 a 24.9).
+11. Peça um número e verifique se ele é múltiplo de 3 e de 4 ao mesmo tempo.
+12. Solicite a idade e se possui autorização dos pais (True/False). Permita a entrada se for maior de idade ou tiver autorização.

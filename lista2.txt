@@ -1,0 +1,39 @@
+1)Peça dois números e mostre a soma.
+
+2) Peça dois números e mostre a subtração.
+
+3) Peça dois números e mostre a multiplicação.
+
+4) Peça dois números e mostre a divisão.
+
+5) Peça um número e mostre o seu dobro.
+
+6) Peça um número e mostre o seu triplo.
+
+7) Peça um número e mostre a metade.
+
+8) Peça dois números e mostre se o primeiro é maior que o segundo.
+
+9) Peça dois números e mostre se o primeiro é menor que o segundo.
+
+10) Peça dois números e mostre se são iguais.
+
+11) Peça um número e calcule o resto da divisão por 2.
+
+12) Peça um número e calcule o resto da divisão por 5.
+
+13) Peça um número e calcule o quadrado desse número.
+
+14) Peça um número e calcule a raiz quadrada (usando potência **0.5).
+
+15) Peça dois números e calcule a média aritmética.
+
+16) Peça três números e mostre a soma deles.
+
+17) Peça um número e calcule o valor acrescido de 10%.
+
+18) Peça um número e calcule o valor reduzido em 20%.
+
+19) Peça dois números e mostre o maior valor (sem if).
+
+20) Peça dois números e mostre o menor valor (sem if).
