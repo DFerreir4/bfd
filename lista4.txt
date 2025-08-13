@@ -1,0 +1,30 @@
+Lista de Exercícios – Laços de Repetição + Operadores e Condicionais
+Fácil
+
+Contagem simples: Imprima os números de 1 a 10 usando for.
+
+2. Contagem decrescente: Imprima de 10 a 1 usando while.
+
+3. Pares de 0 a 20: Use range() para imprimir apenas números pares de 0 a 20.
+
+4.Soma de números: Peça 5 números ao usuário e mostre a soma total.
+
+Médio
+
+5.Tabuada: Peça um número e exiba sua tabuada de 1 a 10.
+
+6.Múltiplos de 3: Imprima os múltiplos de 3 entre 1 e 50.
+
+7. Contar positivos e negativos: Peça 6 números e conte quantos são positivos, negativos ou zero.
+
+8. Soma até negativo: Solicite números até que o usuário digite um número negativo. Mostre a soma dos números positivos digitados.
+
+Difícil
+
+9. Adivinhação: Gere um número aleatório de 1 a 20 e peça para o usuário adivinhar, usando while até acertar.
+
+10. Soma dos ímpares: Calcule a soma de todos os números ímpares entre 1 e 100.
+
+11. Fatorial: Peça um número e calcule seu fatorial usando for.
+
+12. Primos até N: Peça um número N e mostre todos os números primos até ele.
