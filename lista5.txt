@@ -1,0 +1,61 @@
+ Nível Básico
+
+1. Crie uma função saudacao() que receba um nome como parâmetro e exiba "Olá, <nome>!".
+
+2. Escreva uma função soma(a, b) que retorne a soma de dois números.
+
+3. Faça uma função par_ou_impar(n) que retorne "Par" se o número for par e "Ímpar" caso contrário.
+
+4. Crie uma função dobro_lista(lista) que receba uma lista de números e retorne outra lista com cada número dobrado.
+
+5. Explique, em código, a diferença entre uma variável global e uma variável local.
+
+ Nível Intermediário
+
+6. Crie uma função media(*notas) que receba várias notas (usando parâmetros variáveis) e retorne a média.
+
+7. Escreva uma função calculadora(a, b, operacao) que receba dois números e uma operação ("+", "-", "*", "/") e retorne o resultado.
+
+8. Faça uma função eh_primo(n) que retorne True se o número for primo e False caso contrário.
+
+9. Modularize o código da questão 7:
+
+- Um arquivo calculadora.py com funções de operações.
+
+- Um arquivo main.py que importa e usa essas funções.
+
+10. Crie uma função palindromo(palavra) que retorne True se a palavra for um palíndromo, e False caso contrário.
+
+ Nível Avançado
+
+11. Implemente uma calculadora modularizada que:
+
+ - Tenha um módulo com funções matemáticas (soma, subtracao, multiplicacao, divisao).
+
+ - Tenha um módulo interface.py para interagir com o usuário.
+
+ - O main.py deve importar os módulos e executar o programa.
+
+12. Crie um sistema de login modularizado:
+
+ - Um módulo usuarios.py que armazene um dicionário de usuários e senhas.
+
+ - Um módulo autenticacao.py com funções registrar_usuario e login.
+
+ - Um main.py que permita ao usuário registrar e autenticar usuários.
+
+13. Implemente uma função fibonacci(n) que retorne os n primeiros números da sequência de Fibonacci. Depois, modularize em dois arquivos:
+
+- funcoes.py (com a lógica).
+
+- main.py (com input do usuário).
+
+14. Desenvolva uma função estatística(lista) que retorne um dicionário com: média, mediana, maior e menor valor da lista.
+
+15. Crie um programa modularizado chamado Mini-Sistema de Alunos:
+
+- Módulo alunos.py: funções para adicionar aluno, remover e listar.
+
+- Módulo notas.py: funções para lançar notas e calcular médias.
+
+- main.py: menu interativo para o usuário acessar as opções.
