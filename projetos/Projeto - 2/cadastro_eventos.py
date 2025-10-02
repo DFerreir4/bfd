@@ -16,7 +16,7 @@ class CadastroEventos:
         # Adiciona este evento à lista global
         CadastroEventos._eventos.append(self)
 
-    # --- Validação de data ---
+    # Validação de data
     @property
     def data(self):
         return self._data
@@ -26,14 +26,14 @@ class CadastroEventos:
         try:
             data_evento = datetime.strptime(valor, "%d/%m/%Y")
         except ValueError:
-            raise ValueError("Data inválida! Use o formato DD/MM/AAAA.")
+            raise ValueError("Data INVÁLIDA! Use o formato DD/MM/AAAA.")
 
         if data_evento < datetime.now():
             raise ValueError("A data do evento não pode ser anterior à data atual.")
 
         self._data = data_evento
 
-    # --- Validação de capacidade máxima ---
+    #Validação de capacidade máxima
     @property
     def capacidade_maxima(self):
         return self._capacidade_maxima
@@ -44,7 +44,7 @@ class CadastroEventos:
             raise ValueError("A capacidade máxima deve ser um número inteiro positivo.")
         self._capacidade_maxima = valor
 
-    # --- Validação de preço do ingresso ---
+    # Validação de preço do ingresso
     @property
     def preco_ingresso(self):
         return self._preco_ingresso
@@ -55,17 +55,17 @@ class CadastroEventos:
             raise ValueError("O preço do ingresso deve ser um número positivo maior que zero.")
         self._preco_ingresso = float(valor)
 
-    # --- Métodos extras ---
+    # Métodos extras
     @classmethod
     def listar_eventos(cls):
-        """Lista todos os eventos cadastrados."""
+        # Lista todos os eventos cadastrados.
         if not cls._eventos:
             return "Nenhum evento cadastrado."
         return "\n\n".join(str(evento) for evento in cls._eventos)
 
     @classmethod
     def buscar_eventos(cls, categoria: str = None, data: str = None):
-        """Busca eventos por categoria ou data (DD/MM/AAAA)."""
+        # Busca eventos por categoria ou data (DD/MM/AAAA).
         resultados = cls._eventos
 
         if categoria:
@@ -75,10 +75,10 @@ class CadastroEventos:
             try:
                 data_busca = datetime.strptime(data, "%d/%m/%Y")
             except ValueError:
-                raise ValueError("Data inválida! Use o formato DD/MM/AAAA.")
+                raise ValueError("Data INVÁLIDA! Use o formato DD/MM/AAAA.")
             resultados = [e for e in resultados if e.data.date() == data_busca.date()]
 
-        return resultados if resultados else "Nenhum evento encontrado com os critérios informados."
+        return resultados if resultados else "Nenhum evento encontrado."
 
     def __str__(self):
         return (f"Evento: {self.nome}\n"

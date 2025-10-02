@@ -1,178 +1,151 @@
-import os
-from cadastro_eventos import CadastroEventos
-from inscricoes_participantes import InscricoesParticipantes
-
-def limpar_tela():
-    os.system("cls" if os.name == "nt" else "clear")
-
-def pausar(msg="\nPressione ENTER para voltar..."):
-    input(msg)
-    limpar_tela()
-
-def relatorios():
-    while True:
-        print("===== RELATÓRIOS =====")
-        print("1 - Número total de inscritos por evento")
-        print("2 - Lista de eventos com vagas disponíveis")
-        print("3 - Receita total por evento")
-        print("0 - Voltar ao menu principal")
-
-        opcao = input("Escolha uma opção: ")
-
-        if opcao == "1":
-            print("\n=== INSCRITOS POR EVENTO ===")
-            if not CadastroEventos._eventos:
-                print("Nenhum evento cadastrado.")
-            else:
-                for evento in CadastroEventos._eventos:
-                    print(f"{evento.nome}: {len(evento.inscritos)} inscritos")
-            pausar()
-
-        elif opcao == "2":
-            print("\n=== EVENTOS COM VAGAS DISPONÍVEIS ===")
-            if not CadastroEventos._eventos:
-                print("Nenhum evento cadastrado.")
-            else:
-                for evento in CadastroEventos._eventos:
-                    vagas_restantes = evento.capacidade_maxima - len(evento.inscritos)
-                    if vagas_restantes > 0:
-                        print(f"{evento.nome} -> {len(evento.inscritos)}/{evento.capacidade_maxima} inscritos")
-            pausar()
-
-        elif opcao == "3":
-            print("\n=== RECEITA TOTAL POR EVENTO ===")
-            if not CadastroEventos._eventos:
-                print("Nenhum evento cadastrado.")
-            else:
-                for evento in CadastroEventos._eventos:
-                    receita = len(evento.inscritos) * evento.preco_ingresso
-                    print(f"{evento.nome}: R${receita:.2f}")
-            pausar()
-
-        elif opcao == "0":
-            limpar_tela()
-            break
-        else:
-            print("Opção inválida, tente novamente.")
-            pausar()
+from cadastro_eventos import CadastroEventos #importa metódos cadastros_eventos
+from inscricoes_participantes import InscricoesParticipantes #importa metódos de inscricoes_participantes
+from funcoes import *  # importa todas as funções
 
 def menu():
     while True:
-        print("===== MENU PRINCIPAL =====")
-        print("1 - Cadastrar evento")
-        print("2 - Listar eventos")
-        print("3 - Buscar evento por categoria/data")
-        print("4 - Inscrever participante")
-        print("5 - Cancelar inscrição")
-        print("6 - Realizar check-in")
-        print("7 - Relatórios")
-        print("0 - Sair")
+        print("####### MENU PRINCIPAL #######")
+        print("| 1 - Cadastrar evento       |")
+        print("| 2 - Listar eventos         |")
+        print("| 3 - Inscrever participante |")
+        print("| 4 - Realizar check-in      |")
+        print("| 5 - Cancelar inscrição     |")
+        print("| 6 - Relatórios             |")
+        print("| 0 - Sair                   |")
 
-        opcao = input("Escolha uma opção: ")
+        opcao = input("\nEscolha uma opção: ")
 
-        if opcao == "1":
-            try:
-                nome = input("Nome do evento: ")
-                data = input("Data do evento (DD/MM/AAAA): ")
-                local = input("Local do evento: ")
-                capacidade = int(input("Capacidade máxima: "))
-                categoria = input("Categoria: ")
-                preco = float(input("Preço do ingresso: "))
-                evento = CadastroEventos(nome, data, local, capacidade, categoria, preco)
-                print(f"\nEvento '{evento.nome}' cadastrado com sucesso!")
-            except Exception as e:
-                print("Erro:", e)
-            pausar()
+        if opcao == "1":  # CADASTRAR EVENTO 
+            while True:
+                try:
+                    nome = validar_texto("\nNome do evento")
+                    data = validar_data("Data do evento")
+                    local = validar_texto("Local do evento")
+                    capacidade = validar_inteiro("Capacidade máxima")
+                    categoria = validar_texto("Categoria")
+                    preco = validar_float("Preço do ingresso")
 
-        elif opcao == "2":
-            print("\n=== LISTA DE EVENTOS ===")
+                    evento = CadastroEventos(nome, data, local, capacidade, categoria, preco)
+                    print(f"\nEvento '{evento.nome}' cadastrado com SUCESSO!")
+                except Exception as e:
+                    input(f"Erro: {e}. Pressione ENTER para tentar novamente.")
+
+                escolha = input("\nDeseja cadastrar outro evento? (s/n): ").strip().lower()
+                if escolha != "s":
+                    limpar_tela()
+                    break
+
+        elif opcao == "2":  # LISTAR EVENTOS
+            print("\n#### LISTA DE EVENTOS ####")
             print(CadastroEventos.listar_eventos())
-            pausar()
 
-        elif opcao == "3":
-            tipo = input("Buscar por (categoria/data): ").strip().lower()
-            if tipo == "categoria":
-                cat = input("Digite a categoria: ")
-                resultados = CadastroEventos.buscar_eventos(categoria=cat)
-            elif tipo == "data":
-                data = input("Digite a data (DD/MM/AAAA): ")
-                resultados = CadastroEventos.buscar_eventos(data=data)
-            else:
-                print("Opção inválida!")
+            escolha = input("\nVocê deseja fazer uma busca de evento por categoria ou data? (s/n): ").strip().lower()
+            if escolha == "s":
+                termo = input("Digite a categoria ou a data (DD/MM/AAAA): ").strip()
+                resultados = [evento for evento in CadastroEventos._eventos
+                              if evento.categoria.lower() == termo.lower() or evento.data == termo]
+
+                if resultados:
+                    print("\n#### RESULTADOS DA BUSCA ####")
+                    for evento in resultados:
+                        print(f"Evento: {evento.nome}")
+                        print(f"Data: {evento.data}")
+                        print(f"Local: {evento.local}")
+                        print(f"Capacidade Máxima: {evento.capacidade_maxima}")
+                        print(f"Categoria: {evento.categoria}")
+                        print(f"Preço do Ingresso: R${evento.preco_ingresso:.2f}")
+                        print(f"Inscritos: {len(evento.inscritos)}\n")
+                else:
+                    print("\nNenhum evento encontrado.")
                 pausar()
-                continue
-
-            print("\n=== RESULTADOS ===")
-            if isinstance(resultados, str):
-                print(resultados)
             else:
-                for evento in resultados:
-                    print(evento, "\n")
-            pausar()
+                limpar_tela()
 
-        elif opcao == "4":
-            try:
-                if not CadastroEventos._eventos:
-                    print("Nenhum evento cadastrado.")
-                    pausar()
-                    continue
-                print("\n=== EVENTOS DISPONÍVEIS ===")
-                for i, evento in enumerate(CadastroEventos._eventos, start=1):
-                    print(f"{i} - {evento.nome} ({len(evento.inscritos)}/{evento.capacidade_maxima} vagas)")
-                escolha = int(input("Escolha o número do evento: ")) - 1
-                evento = CadastroEventos._eventos[escolha]
+        elif opcao == "3":  # INSCREVER PARTICIPANTE
+            while True:
+                try:
+                    if not CadastroEventos._eventos:
+                        print("Nenhum evento cadastrado.")
+                        pausar()
+                        break
 
-                nome = input("Nome do participante: ")
-                email = input("E-mail do participante: ")
-                participante = InscricoesParticipantes(nome, email, evento)
-                print(f"\nInscrição de {participante.nome} realizada com sucesso!")
-            except Exception as e:
-                print("Erro:", e)
-            pausar()
+                    print("\n#### EVENTOS DISPONÍVEIS ####")
+                    for i, evento in enumerate(CadastroEventos._eventos, start=1):
+                        print(f"{i} - {evento.nome} ({len(evento.inscritos)}/{evento.capacidade_maxima} vagas)")
 
-        elif opcao == "5":
-            try:
-                email = input("Digite o e-mail do participante: ")
-                encontrado = False
-                for evento in CadastroEventos._eventos:
-                    for inscrito in evento.inscritos:
-                        if inscrito.email == email:
-                            print(inscrito.cancelar_inscricao())
-                            encontrado = True
-                            break
-                if not encontrado:
-                    print("Participante não encontrado.")
-            except Exception as e:
-                print("Erro:", e)
-            pausar()
+                    escolha = validar_inteiro("Escolha o número do evento") - 1
+                    if escolha < 0 or escolha >= len(CadastroEventos._eventos):
+                        input("Evento INVÁLIDO. Pressione ENTER para tentar novamente.")
+                        continue
 
-        elif opcao == "6":
-            try:
-                email = input("Digite o e-mail do participante: ")
-                encontrado = False
-                for evento in CadastroEventos._eventos:
-                    for inscrito in evento.inscritos:
-                        if inscrito.email == email:
-                            print(inscrito.realizar_checkin())
-                            encontrado = True
-                            break
-                if not encontrado:
-                    print("Participante não encontrado.")
-            except Exception as e:
-                print("Erro:", e)
-            pausar()
+                    evento = CadastroEventos._eventos[escolha]
 
-        elif opcao == "7":
+                    nome = validar_texto("Nome do participante")
+                    email = validar_texto("E-mail do participante")
+
+                    participante = InscricoesParticipantes(nome, email, evento)
+                    print(f"\nInscrição de {participante.nome} realizada com SUCESSO!")
+                except Exception as e:
+                    input(f"Erro: {e}. Pressione ENTER para tentar novamente.")
+
+                nova_inscricao = input("\nVocê deseja inscrever mais um participante? (s/n): ").strip().lower()
+                if nova_inscricao != "s":
+                    limpar_tela()
+                    break
+
+        elif opcao == "4":  # REALIZAR CHECK-IN
+            while True:
+                try:
+                    email = validar_texto("Digite o e-mail do participante")
+                    encontrado = False
+                    for evento in CadastroEventos._eventos:
+                        for inscrito in evento.inscritos:
+                            if inscrito.email == email:
+                                print(inscrito.realizar_checkin())
+                                encontrado = True
+                                break
+                    if not encontrado:
+                        print("Participante NÃO encontrado.")
+                except Exception as e:
+                    input(f"Erro: {e}. Pressione ENTER para tentar novamente.")
+
+                mais_checkin = input("\nVocê deseja fazer mais algum Check-in? (s/n): ").strip().lower()
+                if mais_checkin != "s":
+                    limpar_tela()
+                    break
+
+        elif opcao == "5":  # CANCELAR INSCRIÇÃO
+            while True:
+                try:
+                    email = validar_texto("Digite o e-mail do participante")
+                    encontrado = False
+                    for evento in CadastroEventos._eventos:
+                        for inscrito in evento.inscritos:
+                            if inscrito.email == email:
+                                print(inscrito.cancelar_inscricao())
+                                encontrado = True
+                                break
+                    if not encontrado:
+                        print("Participante NÃO encontrado.")
+                except Exception as e:
+                    input(f"Erro: {e}. Pressione ENTER para tentar novamente.")
+
+                mais_cancelar = input("\nVocê deseja cancelar mais uma inscrição? (s/n): ").strip().lower()
+                if mais_cancelar != "s":
+                    limpar_tela()
+                    break
+
+        elif opcao == "6":  # RELATÓRIOS
             limpar_tela()
             relatorios()
 
         elif opcao == "0":
-            print("Saindo... Até logo! 👋")
+            print("Obrigado por ter utilizado nosso sistema. Até a próxima.")
             break
 
         else:
-            print("Opção inválida, tente novamente.")
-            pausar()
+            input("Opção INVÁLIDA, pressione ENTER para tentar novamente.")
+            limpar_tela()
 
 if __name__ == "__main__":
     limpar_tela()

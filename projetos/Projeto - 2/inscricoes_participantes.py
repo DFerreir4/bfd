@@ -9,7 +9,7 @@ class InscricoesParticipantes:
 
         # --- Validação de limite de vagas ---
         if len(self.evento.inscritos) >= self.evento.capacidade_maxima:
-            raise ValueError(f"O evento '{self.evento.nome}' já está lotado. Não é possível realizar novas inscrições.")
+            raise ValueError(f"O evento '{self.evento.nome}' já está lotado. NÃO é possível realizar novas inscrições.")
 
         # --- Validação de duplicidade de email ---
         for inscrito in self.evento.inscritos:
@@ -24,7 +24,7 @@ class InscricoesParticipantes:
         if self in self.evento.inscritos:
             self.evento.inscritos.remove(self)
             return f"Inscrição de {self.nome} cancelada com sucesso."
-        return f"O participante {self.nome} não está inscrito no evento."
+        return f"O participante {self.nome} NÃO está inscrito no evento."
 
     def realizar_checkin(self):
         """Marca presença no evento."""
@@ -34,5 +34,5 @@ class InscricoesParticipantes:
         return f"{self.nome} já realizou o check-in."
 
     def __str__(self):
-        status_checkin = "✅ Presente" if self.checkin else "❌ Não fez check-in"
+        status_checkin = "Fez Check-in" if self.checkin else "Não fez check-in"
         return f"Participante: {self.nome} | Email: {self.email} | Evento: {self.evento.nome} | {status_checkin}"
