@@ -194,4 +194,5 @@ def menu():
 
 if __name__ == "__main__":
     limpar_tela()
+    CadastroEventos.carregar_eventos_json()
     menu()

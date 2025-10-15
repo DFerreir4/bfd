@@ -1,7 +1,7 @@
 from cadastro_eventos import CadastroEventos
 
 class InscricoesParticipantes:
-    def __init__(self, nome: str, email: str, evento: CadastroEventos):
+    def __init__(self, nome: str, email: str, evento: CadastroEventos, salvar=True):
         self.nome = nome
         self.email = email
         self.evento = evento
@@ -18,6 +18,9 @@ class InscricoesParticipantes:
 
         # Se passou pelas validações, adiciona à lista de inscritos
         self.evento.inscritos.append(self)
+
+        if salvar:
+            CadastroEventos.salvar_eventos_json()
 
     def cancelar_inscricao(self):
         """Cancela a inscrição do participante no evento."""

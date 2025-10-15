@@ -1,8 +1,10 @@
+import json
 from datetime import datetime
 
 class CadastroEventos:
     # Lista estática para armazenar todos os eventos criados
     _eventos = []
+    _arquivo_dados = "eventos.json"
 
     def __init__(self, nome: str, data: str, local: str, capacidade_maxima: int, categoria: str, preco_ingresso: float):
         self.nome = nome
@@ -15,6 +17,7 @@ class CadastroEventos:
 
         # Adiciona este evento à lista global
         CadastroEventos._eventos.append(self)
+        self.salvar_eventos_json()  # salva automaticamente a cada novo cadastro
 
     # Validação de data
     @property
@@ -56,6 +59,59 @@ class CadastroEventos:
         self._preco_ingresso = float(valor)
 
     # Métodos extras
+    @classmethod
+    def salvar_eventos_json(cls):
+        """Salva todos os eventos e participantes em um arquivo JSON."""
+        dados = []
+        for evento in cls._eventos:
+            dados.append({
+                "nome": evento.nome,
+                "data": evento.data.strftime("%d/%m/%Y"),
+                "local": evento.local,
+                "capacidade_maxima": evento.capacidade_maxima,
+                "categoria": evento.categoria,
+                "preco_ingresso": evento.preco_ingresso,
+                "inscritos": [
+                    {
+                        "nome": p.nome,
+                        "email": p.email,
+                        "checkin": getattr(p, "checkin", False)
+                    } for p in evento.inscritos
+                ]
+            })
+
+        with open(cls._arquivo_dados, "w", encoding="utf-8") as f:
+            json.dump(dados, f, ensure_ascii=False, indent=4)
+
+    @classmethod
+    def carregar_eventos_json(cls):
+        """Carrega os eventos e participantes salvos no arquivo JSON."""
+        try:
+            with open(cls._arquivo_dados, "r", encoding="utf-8") as f:
+                dados = json.load(f)
+
+            from inscricoes_participantes import InscricoesParticipantes
+
+            cls._eventos = []
+            for item in dados:
+                evento = CadastroEventos(
+                    item["nome"],
+                    item["data"],
+                    item["local"],
+                    item["capacidade_maxima"],
+                    item["categoria"],
+                    item["preco_ingresso"]
+                )
+                evento.inscritos = []
+                for inscrito in item.get("inscritos", []):
+                    participante = InscricoesParticipantes(
+                        inscrito["nome"], inscrito["email"], evento, salvar=False
+                    )
+                    participante.checkin = inscrito.get("checkin", False)
+
+        except FileNotFoundError:
+            cls._eventos = []
+
     @classmethod
     def listar_eventos(cls):
         # Lista todos os eventos cadastrados.
