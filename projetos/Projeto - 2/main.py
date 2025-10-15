@@ -4,7 +4,9 @@ from funcoes import *  # importa todas as funções
 
 def menu():
     while True:
-        print("####### MENU PRINCIPAL #######")
+        print("#"*30)
+        print("#"*6," MENU PRINCIPAL ","#"*6)
+        print("#"*30)
         print("| 1 - Cadastrar evento       |")
         print("| 2 - Listar eventos         |")
         print("| 3 - Inscrever participante |")
@@ -12,18 +14,48 @@ def menu():
         print("| 5 - Cancelar inscrição     |")
         print("| 6 - Relatórios             |")
         print("| 0 - Sair                   |")
-
+        print("-"*30)
         opcao = input("\nEscolha uma opção: ")
 
         if opcao == "1":  # CADASTRAR EVENTO 
             while True:
                 try:
-                    nome = validar_texto("\nNome do evento")
+                    print("\n")
+                    print("#"*7,"CADASTRAR EVENTO","#"*7)
+                    nome = validar_texto("Nome do evento")
                     data = validar_data("Data do evento")
                     local = validar_texto("Local do evento")
                     capacidade = validar_inteiro("Capacidade máxima")
                     categoria = validar_texto("Categoria")
-                    preco = validar_float("Preço do ingresso")
+                    
+                    # Validação e formatação do preço no campo preço
+                    while True:
+                        preco_input = input("Preço R$(##,##): ").replace(",", ".").strip()
+                        try:
+                            preco = float(preco_input)
+                            if preco <= 0:
+                                input("ERRO: O preço deve ser maior que zero. Pressione ENTER para tentar novamente.")
+                            else:
+                                break
+                        except ValueError:
+                            input("ERRO: O valor deve ser numérico no formato R$(##,##). Pressione ENTER para tentar novamente.")
+
+                    # --- VERIFICAÇÃO DE EVENTO DUPLICADO ---
+                    evento_existente = any(
+                        e.nome.lower() == nome.lower() and
+                        e.data.strftime("%d/%m/%Y") == data and
+                        e.local.lower() == local.lower() and
+                        e.capacidade_maxima == capacidade and
+                        e.categoria.lower() == categoria.lower() and
+                        abs(e.preco_ingresso - preco) < 0.01
+                        for e in CadastroEventos._eventos
+                    )
+
+                    if evento_existente:
+                        input("\nNão é possível cadastrar! Esse cadastro já existe. Pressione ENTER para voltar.")
+                        limpar_tela()
+                        break
+
 
                     evento = CadastroEventos(nome, data, local, capacidade, categoria, preco)
                     print(f"\nEvento '{evento.nome}' cadastrado com SUCESSO!")
@@ -42,14 +74,27 @@ def menu():
             escolha = input("\nVocê deseja fazer uma busca de evento por categoria ou data? (s/n): ").strip().lower()
             if escolha == "s":
                 termo = input("Digite a categoria ou a data (DD/MM/AAAA): ").strip()
-                resultados = [evento for evento in CadastroEventos._eventos
-                              if evento.categoria.lower() == termo.lower() or evento.data == termo]
+                
+                resultados = []
+                for evento in CadastroEventos._eventos:
+                    # Verifica se a categoria é igual (ignorando maiúsculas/minúsculas)
+                    if evento.categoria.lower() == termo.lower():
+                        resultados.append(evento)
+                        continue  # já achou, não precisa comparar data
+
+                    # Verifica se o termo é uma data válida e compara com a data do evento
+                    try:
+                        termo_data = datetime.strptime(termo, "%d/%m/%Y").date()
+                        if evento.data.date() == termo_data:
+                            resultados.append(evento)
+                    except ValueError:
+                        pass  # ignora se o termo não for uma data válida
 
                 if resultados:
                     print("\n#### RESULTADOS DA BUSCA ####")
                     for evento in resultados:
                         print(f"Evento: {evento.nome}")
-                        print(f"Data: {evento.data}")
+                        print(f"Data: {evento.data.strftime('%d/%m/%Y')}")
                         print(f"Local: {evento.local}")
                         print(f"Capacidade Máxima: {evento.capacidade_maxima}")
                         print(f"Categoria: {evento.categoria}")
