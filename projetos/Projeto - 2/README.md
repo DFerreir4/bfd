@@ -64,7 +64,8 @@ Ele foi criado com foco em **organização, validação de dados e persistência
 ###  Instalação
 
 1. **Clone este repositório** (ou copie os arquivos para uma pasta local):
-   git clone https://github.com/DFerreir4/bfd.git
+    ```bash
+   git clone https://github.com/DFerreir4/bfd/tree/main/projetos/Projeto%20-%202
    cd sistema-eventos
 
 
