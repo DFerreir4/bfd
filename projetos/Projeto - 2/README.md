@@ -95,7 +95,7 @@ O menu principal será exibido com as opções disponíveis:
 Os dados do sistema são automaticamente salvos em um arquivo chamado eventos.json localizado na mesma pasta do projeto.
 Esse arquivo é lido toda vez que o programa inicia e atualizado quando há novos cadastros, inscrições ou check-ins.
 
-🧠 Conceitos Utilizados
+## Conceitos Utilizados
 
 Programação Orientada a Objetos (POO):
 
@@ -111,13 +111,13 @@ Estrutura modularizada (arquivos separados por responsabilidade)
 
 ## Autor
 
-    Diego Andrade
-    Desenvolvido como parte de um projeto de aprendizado em Python e Programação Orientada a Objetos.
+Diego Andrade
+Desenvolvido como parte de um projeto de aprendizado em Python e Programação Orientada a Objetos.
     
 
 ## Licença
 
-    Este projeto é de uso livre para fins de estudo e aprendizado.
-    Sinta-se à vontade para modificar, melhorar e compartilhar!
+Este projeto é de uso livre para fins de estudo e aprendizado.
+Sinta-se à vontade para modificar, melhorar e compartilhar!
 
 
