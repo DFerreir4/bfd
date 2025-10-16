@@ -37,6 +37,11 @@ Ele foi criado com foco em **organização, validação de dados e persistência
 
 ---
 
+## Diagrama de Classes UML
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/6e87f434-3863-4b8c-8840-98a8deaf8f24" />
+
+---
+
 ## Estrutura do Projeto
 
     sistema_eventos/
