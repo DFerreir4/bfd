@@ -110,7 +110,7 @@ Estrutura modularizada (arquivos separados por responsabilidade)
 
 ## Autor
 
-Diego Andrade
+Diego Ferreira
 Desenvolvido como parte de um projeto de aprendizado em Python e Programação Orientada a Objetos.
     
 
