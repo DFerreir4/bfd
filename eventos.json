@@ -7,5 +7,14 @@
         "categoria": "Estudo",
         "preco_ingresso": 20.0,
         "inscritos": []
+    },
+    {
+        "nome": "rec'play",
+        "data": "20/10/2025",
+        "local": "Recife-PE",
+        "capacidade_maxima": 3000,
+        "categoria": "Estudo",
+        "preco_ingresso": 1.0,
+        "inscritos": []
     }
 ]
