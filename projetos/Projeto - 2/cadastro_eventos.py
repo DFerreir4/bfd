@@ -1,3 +1,5 @@
+import os
+# importa o módulo os, que serve para lidar com caminhos de arquivos e diretórios.
 import json
 # importa a biblioteca json que permite transformar dados do Python em texto (e salvar em arquivo)
 # e também ler texto de arquivo e transformar de volta em dados do Python.
@@ -14,7 +16,8 @@ class CadastroEventos:
     # _eventos é uma lista que guarda todos os eventos que foram criados durante a execução do programa.
     # o underline no começo é só uma convenção para dizer "isso é interno da classe".
 
-    _arquivo_dados = "eventos.json"
+    _arquivo_dados = os.path.join(os.path.dirname(__file__), "eventos.json")
+    # Caminho completo do arquivo JSON no mesmo diretório do código
     # nome do arquivo onde vamos guardar os eventos no formato JSON — assim os dados não se perdem quando fechar o programa.
 
     def __init__(self, nome: str, data: str, local: str, capacidade_maxima: int, categoria: str, preco_ingresso: float):

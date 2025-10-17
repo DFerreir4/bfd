@@ -1,0 +1,11 @@
+[
+    {
+        "nome": "Rec'n'play",
+        "data": "18/10/2026",
+        "local": "Recife-PE",
+        "capacidade_maxima": 1000,
+        "categoria": "Conhecimento",
+        "preco_ingresso": 10.0,
+        "inscritos": []
+    }
+]
