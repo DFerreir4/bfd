@@ -53,51 +53,54 @@ Ele foi criado com foco em **organização, validação de dados e persistência
     ├── eventos.json # Arquivo JSON onde os dados são salvos automaticamente
     └── README.md # Este arquivo de documentação
 
+---
+
 ## Cenários de Interação do Usuário
 
 Esses cenários descrevem possíveis interações que um usuário pode ter com o sistema de gerenciamento de eventos.
 
-- 1. Cadastrar um novo evento
+ 1. Cadastrar um novo evento
 
 Como um organizador, eu quero cadastrar um novo evento informando nome, data, local, categoria, capacidade e preço do ingresso,
 para que os participantes possam se inscrever e eu possa controlar as vagas disponíveis.
 
-- 2. Listar e buscar eventos
+ 2. Listar e buscar eventos
 
 Como um usuário, eu quero visualizar todos os eventos cadastrados e também buscar eventos por categoria ou data,
 para que eu possa encontrar facilmente eventos do meu interesse.
 
-- 3. Inscrever participante
+ 3. Inscrever participante
 
 Como um participante, eu quero me inscrever em um evento informando meu nome e e-mail,
 para que eu possa garantir minha vaga antes que as inscrições se encerrem.
 
-- 4. Evitar inscrições duplicadas
+ 4. Evitar inscrições duplicadas
 
 Como um participante, eu quero ser avisado se já estiver inscrito em um evento,
 para que eu não faça inscrições duplicadas usando o mesmo e-mail.
 
-- 5. Realizar check-in no evento
+ 5. Realizar check-in no evento
 
 Como um participante, eu quero registrar meu check-in no evento,
 para que os organizadores saibam que compareci.
 
-- 6. Cancelar uma inscrição
+ 6. Cancelar uma inscrição
 
 Como um participante, eu quero cancelar minha inscrição em um evento,
 para que outra pessoa possa ocupar minha vaga.
 
-- 7. Gerar relatórios de eventos
+ 7. Gerar relatórios de eventos
 
 Como um organizador, eu quero visualizar relatórios com o número total de inscritos,
 eventos com vagas disponíveis e a lista de participantes que realizaram check-in,
 para que eu possa acompanhar o desempenho dos eventos e controlar a receita.
 
-- 8. Salvar e carregar dados automaticamente
+ 8. Salvar e carregar dados automaticamente
 
 Como um usuário, eu quero que o sistema salve automaticamente todos os cadastros em um arquivo .json,
 para que as informações não se percam ao fechar o programa.
 
+---
 
 ##  Requisitos e Instalação
 
