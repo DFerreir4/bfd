@@ -1,0 +1,86 @@
+Instruções Detalhadas para Aluno 6 - Simulador de Dados
+1. Gerar pacientes fictícios com Faker
+Objetivo
+Criar um sistema para gerar dados realistas de pacientes para testes e desenvolvimento, garantindo conformidade com a LGPD e boas práticas de segurança.
+
+Instruções Detalhadas
+1.1 Instalação e Configuração do Faker
+
+
+
+
+No python:
+--chamar biblioteca abaixo
+# Instalar bibliotecas necessárias
+pip install faker python-dateutil
+
+1.2 Implementação do Gerador de Pacientes
+
+importar o faker, 
+from faker import Faker
+import random
+from datetime import datetime, timedelta
+import uuid
+
+fake = Faker('pt_BR')
+definição paciente ficticio com dados realistas.
+gerar 30 pacientes 
+campos dos 30 pacientes: 
+id, nome completo, data de nascimento, cpf, sexo, endereço, telefone, email, histórico médico, data de criação
+
+1.3 Integração com o Banco de Dados
+19:08
+sim no sql
+
+Integração com o Banco de Dados
+
+import 
+from app import db
+from models import Paciente
+
+Endpoint para Geração de Dados
+
+Criar imagem termográficas fictícias - pausado
+
+Validações e Boas Práticas
+
+Implementar verificação de permissões (apenas admin)
+Validar tipos de imagem permitidos
+Garantir que imagens sejam salvas em diretório seguro
+Adicionar metadados às imagens geradas (opcional)
+Implementar sistema de limpeza periódica de imagens de teste
+Implementar gerador de respostas aleatórias
+Objetivo
+Criar um sistema que simule respostas da API de classificação de imagens para testes do fluxo de diagnóstico.
+
+Instruções Detalhadas
+3.1 Implementação do Gerador de Respostas
+no python:
+import random
+from datetime import datetime
+
+from services.weka_service import WEKAService
+
+ANA CLARA GOMES DA SILVA
+19:13
+from services.weka_service import WEKAService
+Testes do Gerador de Respostas ( no python, importe o unittest)
+
+ANA CLARA GOMES DA SILVA
+19:14
+Validações e Boas Práticas
+
+Implementar diferentes modos de operação (aleatório, baseado em imagem)
+Garantir que respostas simuladas sejam identificáveis
+Adicionar logs de auditoria para todas as simulações
+Implementar distribuição probabilística realista para os resultados
+Permitir configuração de pesos para diferentes resultados
+Documentar claramente que se trata de dados simulados
+Integração Geral e Documentação
+4.1 Documentação do Simulador
+Criar documentação clara sobre:
+
+Como usar o simulador de dados
+Limitações e considerações de segurança
+Como diferenciar dados reais de simulados
+Procedimentos para limpeza de dados de teste

@@ -1,0 +1,26 @@
+1 - Colocar arquivo simulador_pacientes.py no seguinte destino: 
+
+project_integrador/projeto_integrador/core/
+
+segue arquivo
+
+2 - Modelo Django class paciente no arquivo models.
+
+segue arquivo
+
+Obs: Depois rodar 
+
+python manage.py makemigrations
+
+pyton manage.py migrate
+
+3 - Geração dos pacientes
+
+criando um management command, que permite rodar:
+
+python manage.py gerar_pacientes 
+
+Crie a pasta no destino
+Para gerar 
+
+python manage.py   gerar_pacientes 
